@@ -1,0 +1,47 @@
+version: '2'
+services:
+  eureka:
+    build: 
+      context: ./eureka-server
+    container_name: eureka 
+  c-service_carlo:
+    build: 
+      context: ./c-service
+    depends_on:
+      - "eureka"
+    environment: 
+      - SPRING_PROFILES_ACTIVE=Carlo
+  c-service_chiara:
+    build: 
+      context: ./c-service
+    depends_on:
+      - "eureka"
+    environment: 
+      - SPRING_PROFILES_ACTIVE=Chiara
+  a-service_alberto:
+    build: 
+      context: ./a-service
+    depends_on:
+      - "eureka"
+    environment: 
+      - SPRING_PROFILES_ACTIVE=Alberto
+  a-service_alice:
+    build: 
+      context: ./a-service
+    depends_on:
+      - "eureka"
+    environment: 
+      - SPRING_PROFILES_ACTIVE=Alice
+  zuul:
+    build: 
+      context: ./zuul-gateway
+    container_name: zuul 
+    ports:
+    - "8080:8080"
+    depends_on:
+      - "eureka"
+
+
+
+
+

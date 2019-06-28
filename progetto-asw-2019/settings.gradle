@@ -1,0 +1,11 @@
+include 'a-service'
+include 'c-service'
+include 'eureka-server'
+include 'zuul-gateway'
+
+rootProject.name = 'progetto-asw-2019'
+
+project(':a-service').name = 'a-service'
+project(':c-service').name = 'c-service'
+project(':eureka-server').name = 'eureka'
+project(':zuul-gateway').name = 'zuul'
