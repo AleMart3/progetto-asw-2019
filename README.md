@@ -1,34 +1,47 @@
-# Sentence (con Eureka, Feign, Hystrix e Zuul)
+# Progetto 1D
 
-Questo sottoprogetto mostra una versione dell'applicazione **sentence** che utilizza un servizio di service discovery (*Eureka*), client REST generati automaticamente (con *Feign*) e Circuit Breaker (*Hystrix*), ed un API gateway (*Zuul*). 
+## Ambiente di esecuzione 
 
-I servizi *word-service* e *sentence-service* agiscono da client nei confronti di Eureka. 
+Questa applicazione può essere costruita ed eseguita in un ambiente in cui vi siano installati:
 
-Il servizio *sentence-service* usa Feign e Hystrix per accedere alle diverse istanze del servizio *word-service*. 
+* Java SDK (Open JDK) 
+  
+* Gradle 
 
-Il servizio *sentence-service* può essere ora replicato, poiché le sue funzionalità sono esposte sulla porta *8080* tramite l'API gateway Zuul. 
+* Docker 
 
-## Componenti eseguibili
+* Docker compose 
 
-Questa versione dell'applicazione **sentence** è formata dai seguenti componenti eseguibili: 
+Vanno però utilizzate più finestre (terminali) diverse. In genere, una per l'applicazione ed una per il suo client.
 
-* **eureka-server** è un servizio di service discovery (Eureka), sulla porta *8761*
-* **word-service** è il servizio per la generazione di parole casuali, che agisce da client nei confronti di Eureka, e che viene avviato con tre istanze: 
-  * una con il profilo *subject* su una porta casuale, 
-  * una con il profilo *verb* su una porta casuale, 
-  * una con il profilo *object* su una porta casuale, 
-* **sentence-service** è il servizio per la generazione delle frasi casuali, su una porta casuale, che agisce da client nei confronti dei servizi per le parole tramite Eureka, Feign e Hystrix 
-* **zuul-gateway** è un API gateway per esporre le funzionalità dell'intera applicazione sulla porta *8080* 
+
+## Build (Java) 
+
+Per la costruzione dell'applicazione, eseguire il comando `gradle assemble` oppure `gradle build`, oppure eseguire lo script `build-java-projects.sh`
+
+## Build (Docker) 
+
+Per la costruzione delle immagini Docker, eseguire lo script `build-docker-images-with-compose.sh` 
 
 ## Esecuzione 
 
-Per eseguire questa versione dell'applicazione: 
+Ci possono essere più istanze del servizio A e del servizio C. Ciascuna di esse deve  avere  un  nome  diverso
+In questo caso ci sono due istanze del servizio A (Alice e Alberto) e due istanze del servizio C (Carlo e Chiara).
+Per eseguire l'applicazione, eseguire lo script `run-with-compose.sh.`
+E' possibile eseguire richieste POST e GET al servizio A all'url `localhost:8080/api-gateway/a-service`
+L'applicazione può essere verificata usando lo script `run-curl-client-get.sh` per le richieste GET e lo script `run-curl-client-post.sh` per le richieste POST.
+E' necessario attendere qualche minuto affinchè l'avvio dell'applicazione sia completato, in modo da evitare errori a seguito di richieste.
 
-* per avviare l'applicazione *sentence* (compreso Eureka e Zuul), eseguire lo script `run-sentence-ewsz.sh` 
+## Arresto 
 
-## Esperimenti 
+Per arrestare l'applicazione, eseguire lo script `stop-with-compose.sh` 
 
-### Esecuzione con più istanze dei servizi per le parole e del servizio delle frasi
 
-Lo script `run-sentence-ewsz-replicated.sh` avvia due istanze del servizio *word-service* per ciascuno dei suoi tre profili ed anche due istanze del servizio *sentence-service*. 
+## Esecuzione con più istanze del servizio A e del servizio C
+
+Per modificare il numero di istanze è necessario modificare i file:
+
+* application.yml delle applicazioni a-service e c-service 
+
+* docker-compose.yml 
 
