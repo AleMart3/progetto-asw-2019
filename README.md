@@ -25,11 +25,15 @@ Per la costruzione delle immagini Docker, eseguire lo script `build-docker-image
 
 ## Esecuzione 
 
-Ci possono essere più istanze del servizio A e del servizio C. Ciascuna di esse deve  avere  un  nome  diverso
+Ci possono essere più istanze del servizio A e del servizio C. Ciascuna di esse deve  avere  un  nome  diverso.
 In questo caso ci sono due istanze del servizio A (Alice e Alberto) e due istanze del servizio C (Carlo e Chiara).
+
 Per eseguire l'applicazione, eseguire lo script `run-with-compose.sh.`
+
 E' possibile eseguire richieste POST e GET al servizio A all'url `localhost:8080/api-gateway/a-service`
+
 L'applicazione può essere verificata usando lo script `run-curl-client-get.sh` per le richieste GET e lo script `run-curl-client-post.sh` per le richieste POST.
+
 E' necessario attendere qualche minuto affinchè l'avvio dell'applicazione sia completato, in modo da evitare errori a seguito di richieste.
 
 ## Arresto 
