@@ -45,7 +45,7 @@ Per arrestare l'applicazione, eseguire lo script `stop-with-compose.sh`
 
 Per modificare il numero di istanze è necessario modificare i file:
 
-* application.yml delle applicazioni a-service e c-service 
+* `application.yml` delle applicazioni **a-service** e **c-service **
 
-* docker-compose.yml 
+* `docker-compose.yml`
 
