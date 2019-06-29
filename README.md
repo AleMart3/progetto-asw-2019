@@ -34,7 +34,7 @@ E' possibile eseguire richieste POST e GET al servizio A all'url `localhost:8080
 
 L'applicazione può essere verificata usando lo script `run-curl-client-get.sh` per le richieste GET e lo script `run-curl-client-post.sh` per le richieste POST.
 
-E' necessario attendere qualche minuto affinchè l'avvio dell'applicazione sia completato, in modo da evitare errori a seguito di richieste.
+È necessario attendere alcuni minuti per il completo avvio dell'applicazione al fine di evitare errori a seguito di richieste. 
 
 ## Arresto 
 
